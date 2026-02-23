@@ -94,7 +94,7 @@ services:
     image: caddy:latest                                                         
     restart: unless-stopped
     ports:
-      - "8081:80"
+      - "3000:80"
     volumes:
       - caddy_data:/data
       - caddy_config:/config
@@ -102,7 +102,7 @@ services:
       - .env
     environment:
       CADDY_HOSTS: "${CADDY_HOSTS:-$KEYGEN_HOST}"
-    command: ["caddy", "reverse-proxy", "--from", ":80", "--to", "web:8081"]
+    command: ["caddy", "reverse-proxy", "--from", ":80", "--to", "web:3000"]
     depends_on:
       - web
     networks:
